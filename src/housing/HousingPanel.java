@@ -72,6 +72,8 @@ public class HousingPanel extends JPanel {
 	private JButton btnSort;
 	private JComboBox cbIsNC;
 	private JSeparator separator_2;
+	public static TopThreeHousing frameTop = new TopThreeHousing();
+
 
 	public HousingPanel() {
 		initTable();
@@ -503,6 +505,31 @@ public class HousingPanel extends JPanel {
 		separator_2 = new JSeparator();
 		separator_2.setBounds(598, 190, 349, 2);
 		add(separator_2);
+		
+		JButton btnThongKe = new JButton("Thống kê top 3 Diện tích BDS cao nhất");
+		btnThongKe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Housing> topThree = new ArrayList<>();
+				try {
+					List<Housing> hs = FileUtil.binaryInputFileHousing("housing.bin", FileUtil.countObject("housing.bin"));
+					Collections.sort(hs, new sortedByArea().reversed());
+					for(int i = 0; i < 3; i++){
+						topThree.add(hs.get(i));
+					}
+					
+					FileUtil.binaryOutputFile("report.bin", topThree, null, null, null);
+					List<Housing> test = FileUtil.binaryInputFileHousing("report.bin", FileUtil.countObject("report.bin"));
+					frameTop.fillTable(topThree);
+					frameTop.setVisible(true);
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnThongKe.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnThongKe.setBounds(665, 25, 286, 30);
+		add(btnThongKe);
 	}
 
 	private void initTable() {

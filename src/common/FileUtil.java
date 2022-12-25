@@ -43,6 +43,11 @@ public class FileUtil {
 			for(int i = 0; i < accounts.size(); i++) {
 				out.writeObject(accounts.get(i));
 			}
+		} else if (fileName.compareTo("report.bin") == 0) {
+			out.writeInt(housings.size());
+			for(int i = 0; i < housings.size(); i++) {
+				out.writeObject(housings.get(i));
+			}
 		}
 
 		out.close(); // Đóng đối tượng thực thi
