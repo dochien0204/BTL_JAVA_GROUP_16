@@ -55,7 +55,13 @@ public class ComputerPanel extends JPanel {
 	private JLabel hardDriveLable;
 	private JTable table = new JTable();
 	private JScrollPane scrollPane;
-	private DefaultTableModel tableModel = new DefaultTableModel();
+	private DefaultTableModel tableModel = new DefaultTableModel(){
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	       //all cells false
+	       return false;
+	    }
+	};
 	private JButton btnReset;
 	private JSeparator separator;
 	private JSeparator separator_1;
@@ -231,7 +237,7 @@ public class ComputerPanel extends JPanel {
 		});
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 370, 953, 295);
+		scrollPane.setBounds(20, 370, 953, 230);
 		JScrollBar vertical = scrollPane.getVerticalScrollBar();
 		vertical.setValue(vertical.getMaximum());
 		add(scrollPane);
@@ -263,7 +269,7 @@ public class ComputerPanel extends JPanel {
 		add(separator_2);
 
 		separator = new JSeparator();
-		separator.setBounds(20, 351, 1023, 2);
+		separator.setBounds(20, 351, 953, 2);
 		add(separator);
 
 		btnReset = new JButton("Reset");
@@ -356,7 +362,7 @@ public class ComputerPanel extends JPanel {
 		osInput.setBounds(149, 311, 290, 30);
 		add(osInput);
 		
-		JButton btnThongKe = new JButton("Thống kê");
+		JButton btnThongKe = new JButton("Report");
 		btnThongKe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<Computer> topThree = new ArrayList<>();

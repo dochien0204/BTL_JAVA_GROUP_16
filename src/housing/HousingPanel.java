@@ -58,7 +58,13 @@ public class HousingPanel extends JPanel {
 	private JTextField textOwner;
 	private JTable table = new JTable();
 	private JScrollPane scrollPane;
-	private DefaultTableModel tableModel = new DefaultTableModel();
+	private DefaultTableModel tableModel = new DefaultTableModel(){
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	       //all cells false
+	       return false;
+	    }
+	};
 	private JButton btnReset;
 	private JSeparator separator_1;
 	private JLabel lblNewLabel_1;
@@ -285,7 +291,7 @@ public class HousingPanel extends JPanel {
 		add(btnDelete);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(20, 351, 1023, 2);
+		separator.setBounds(20, 351, 953, 2);
 		add(separator);
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -302,7 +308,7 @@ public class HousingPanel extends JPanel {
 		});
 
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 370, 953, 301);
+		scrollPane.setBounds(20, 370, 953, 230);
 		JScrollBar vertical = scrollPane.getVerticalScrollBar();
 		vertical.setValue(vertical.getMaximum());
 		add(scrollPane);
@@ -505,7 +511,7 @@ public class HousingPanel extends JPanel {
 		separator_2.setBounds(598, 190, 349, 2);
 		add(separator_2);
 		
-		JButton btnThongKe = new JButton("Thống kê");
+		JButton btnThongKe = new JButton("Report");
 		btnThongKe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<Housing> topThree = new ArrayList<>();

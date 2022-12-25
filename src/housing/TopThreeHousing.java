@@ -62,7 +62,8 @@ public class TopThreeHousing extends JFrame {
 	public TopThreeHousing() {
 		initTable();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 967, 384);
+		setBounds(250, 120, 967, 384);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

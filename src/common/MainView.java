@@ -72,6 +72,7 @@ public class MainView extends JFrame {
 
 		setResizable(false);
 		setContentPane(contentPane);
+		setTitle("Quản lý dịch vụ");
 		contentPane.setLayout(null);
 		tabbedPane.setFont(new Font("Arial", Font.PLAIN, 15));
 		

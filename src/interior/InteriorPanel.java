@@ -55,7 +55,13 @@ public class InteriorPanel extends JPanel {
 	private JFrame frame = new JFrame();
 	private JTable tb;
 
-	static DefaultTableModel dtm = new DefaultTableModel();
+	static DefaultTableModel dtm = new DefaultTableModel() {
+	    @Override
+	    public boolean isCellEditable(int row, int column) {
+	       //all cells false
+	       return false;
+	    }
+	};
 	final static Object[] Title = { "ID", "Name", "Price", "Total", "Color", "Size", "Material" };
 	private JTextField txtSearch;
 	private JTextField txtSortByPrice;
@@ -181,35 +187,31 @@ public class InteriorPanel extends JPanel {
 		add(separator_2);
 		
 		separator = new JSeparator();
-		separator.setBounds(20, 351, 1023, 2);
+		separator.setBounds(20, 351, 953, 2);
 		add(separator);
 		
 		JButton btnAdd = new JButton("Add");
 		btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtId.getText() != "" && txtName.getText() != "" && txtPrice.getText() != ""
-						&& txtTotal.getText() != "" && txtColor.getText() != "" && txtSize.getText() != ""
-						&& txtMaterial.getText() != "") {
-					Interior interior = new Interior(txtId.getText(), txtName.getText(),
-							Double.parseDouble(txtPrice.getText()), Integer.parseInt(txtTotal.getText()),
-							txtColor.getText(), txtSize.getText(), txtMaterial.getText());
-					if (interitorManagerImpl.addInterior(interior)) {
-						JOptionPane.showMessageDialog(frame, "Added", "Notification", JOptionPane.INFORMATION_MESSAGE);
-						try {
-							FileUtil.binaryOutputFile("interior.bin", null, null, MainView.interiors, null);
-							dtm.addRow(new Object[] { interior.getProduct_id(), interior.getProduct_name(),
-									FormatDouble(interior.getProduct_price()), interior.getProduct_total(),
-									interior.getColor(), interior.getSize(), interior.getMaterial(), });
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					} else {
-						JOptionPane.showMessageDialog(frame, "Add Failed", "Notification", JOptionPane.ERROR_MESSAGE);
+				if (!checkValidData()) {
+					return;
+				}
+				Interior interior = new Interior(txtId.getText(), txtName.getText(),
+						Double.parseDouble(txtPrice.getText()), Integer.parseInt(txtTotal.getText()),
+						txtColor.getText(), txtSize.getText(), txtMaterial.getText());
+				if (interitorManagerImpl.addInterior(interior)) {
+					JOptionPane.showMessageDialog(frame, "Added", "Notification", JOptionPane.INFORMATION_MESSAGE);
+					try {
+						FileUtil.binaryOutputFile("interior.bin", null, null, MainView.interiors, null);
+						dtm.addRow(new Object[] { interior.getProduct_id(), interior.getProduct_name(),
+								FormatDouble(interior.getProduct_price()), interior.getProduct_total(),
+								interior.getColor(), interior.getSize(), interior.getMaterial(), });
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
 					}
 				} else {
-					JOptionPane.showMessageDialog(frame, "Please enter full information", "Notification",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(frame, "Add Failed", "Notification", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -221,6 +223,9 @@ public class InteriorPanel extends JPanel {
 		JButton btnEdit = new JButton("Edit");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (!checkValidData()) {
+					return;
+				}
 				int i = tb.getSelectedRow();
 				if (i >= 0) {
 					Interior interior = new Interior(txtId.getText(), txtName.getText(),
@@ -504,7 +509,7 @@ public class InteriorPanel extends JPanel {
 		LoadData(MainView.interiors);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 370, 953, 295);
+		scrollPane.setBounds(20, 370, 953, 230);
 		add(scrollPane);
 
 		tb = new JTable();
@@ -572,7 +577,7 @@ public class InteriorPanel extends JPanel {
 		add(lblSortType);
 		
 
-		JButton btnThongKe = new JButton("Thống kê");
+		JButton btnThongKe = new JButton("Report");
 		btnThongKe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<Interior> topThree = new ArrayList<>();
@@ -650,6 +655,63 @@ public class InteriorPanel extends JPanel {
 					FormatDouble(list.get(i).getProduct_price()), list.get(i).getProduct_total(),
 					list.get(i).getColor(), list.get(i).getSize(), list.get(i).getMaterial() });
 		}
+	}
+
+	public boolean validateEmtyField() {
+		StringBuilder sb = new StringBuilder();
+		if (txtName.getText().equals("")) {
+			sb.append("Name cannot be blank \n");
+		}
+		if (txtPrice.getText().equals("")) {
+			sb.append("Price cannot be blank \n");
+		}
+		if (txtTotal.getText().equals("")) {
+			sb.append("Total cannot be blankg \n");
+		}
+		if (txtSize.getText().equals("")) {
+			sb.append("Size cannot be blank \n");
+		}
+		if (txtMaterial.getText().equals("")) {
+			sb.append("Materior cannot be blank \n");
+		}
+		if (txtColor.getText().equals("")) {
+			sb.append("Color cannot be blank \n");
+		}
+		if (sb.length() > 0) {
+			JOptionPane.showMessageDialog(frame, sb.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+	
+	public boolean checkValidData() {
+		if (!validateEmtyField()) {
+			return false;
+		}
+		StringBuilder sb = new StringBuilder();
+		try {
+			double price = Double.parseDouble(txtPrice.getText());
+			if (price <= 0) {
+				sb.append("Price must be greater than 0");
+			}
+
+		} catch (Exception ex) {
+			sb.append("Price must be real number");
+		}
+		try {
+			int total = Integer.parseInt(txtTotal.getText());
+			if (total <= 0) {
+				sb.append("Total must be greater than 0");
+			}
+
+		} catch (Exception ex) {
+			sb.append("Total must be an integer");
+		}
+		if (sb.length() > 0) {
+			JOptionPane.showMessageDialog(frame, sb.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
 	}
 
 	public static String FormatDouble(double price) {

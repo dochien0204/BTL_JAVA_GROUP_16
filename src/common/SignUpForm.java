@@ -49,7 +49,9 @@ public class SignUpForm extends JFrame {
 	 */
 	public SignUpForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 671, 419);
+		setBounds(450, 120, 671, 419);
+		setResizable(false);
+		setTitle("Sign Up");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -93,7 +95,7 @@ public class SignUpForm extends JFrame {
 		txtConfirm.setBounds(228, 212, 340, 37);
 		contentPane.add(txtConfirm);
 
-		JButton btnSubmit = new JButton("Submit");
+		JButton btnSubmit = new JButton("Sign Up");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String userName = txtUserName.getText();

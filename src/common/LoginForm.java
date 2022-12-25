@@ -54,7 +54,9 @@ public class LoginForm extends JFrame {
 	 */
 	public LoginForm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 690, 417);
+		setBounds(450, 120, 671, 419);
+		setResizable(false);
+		setTitle("Log In");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
