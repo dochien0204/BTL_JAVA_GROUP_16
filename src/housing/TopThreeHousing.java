@@ -85,12 +85,12 @@ public class TopThreeHousing extends JFrame {
 		table.setModel(tableModel);
 		table.setRowHeight(30);
 		
-		JLabel lblNewLabel = new JLabel("Top 3 BĐS Diện tích cao nhất");
+		JLabel lblNewLabel = new JLabel("Top 3 BĐS Diện tích lớn nhất");
 		lblNewLabel.setFont(new Font("Arial", Font.PLAIN, 30));
 		lblNewLabel.setBounds(269, 21, 412, 44);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnBack = new JButton("Quay lại");
+		JButton btnBack = new JButton("Quit");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				HousingPanel.frameTop.setVisible(false);

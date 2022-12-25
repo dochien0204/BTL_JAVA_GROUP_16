@@ -91,7 +91,7 @@ public class TopThreeInterior extends JFrame {
 		lblNewLabel.setBounds(269, 21, 412, 44);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnBack = new JButton("Quay lại");
+		JButton btnBack = new JButton("Quit");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InteriorPanel.frameTop.setVisible(false);
