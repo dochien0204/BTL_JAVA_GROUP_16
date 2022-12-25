@@ -19,6 +19,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class SignUpForm extends JFrame {
 
@@ -57,22 +58,25 @@ public class SignUpForm extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Sign Up");
 		lblNewLabel.setForeground(new Color(0, 0, 255));
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 38));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 38));
 		lblNewLabel.setBounds(255, 11, 144, 57);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("UserName");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(48, 85, 107, 37);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(48, 87, 153, 37);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Password");
-		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(48, 148, 153, 37);
 		contentPane.add(lblNewLabel_1_1);
 
 		JLabel lblNewLabel_1_2 = new JLabel("Confirm Password");
-		lblNewLabel_1_2.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_1_2.setFont(new Font("Arial", Font.PLAIN, 18));
 		lblNewLabel_1_2.setBounds(48, 212, 153, 37);
 		contentPane.add(lblNewLabel_1_2);
 
@@ -152,17 +156,13 @@ public class SignUpForm extends JFrame {
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-
-				for (Account acc : LoginForm.accs) {
-					System.out.println(acc.toString());
-				}
 				JOptionPane.showMessageDialog(contentPane, "Sign Up successfully", "Successful", JOptionPane.PLAIN_MESSAGE);
 				frame.setVisible(false);
 				LoginForm.frame.setVisible(true);
 			}
 		});
-		btnSubmit.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnSubmit.setBounds(155, 299, 153, 44);
+		btnSubmit.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnSubmit.setBounds(156, 279, 153, 44);
 		contentPane.add(btnSubmit);
 
 		JButton btnLogin = new JButton("Login");
@@ -173,8 +173,8 @@ public class SignUpForm extends JFrame {
 				LoginForm.frame.setVisible(true);
 			}
 		});
-		btnLogin.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnLogin.setBounds(331, 299, 153, 44);
+		btnLogin.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnLogin.setBounds(332, 279, 153, 44);
 		contentPane.add(btnLogin);
 	}
 	

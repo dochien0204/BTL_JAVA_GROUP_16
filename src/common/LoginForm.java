@@ -62,29 +62,30 @@ public class LoginForm extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Login To System");
-		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 38));
-		lblNewLabel.setBounds(212, 26, 290, 61);
+		lblNewLabel.setForeground(new Color(0, 0, 255));
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 38));
+		lblNewLabel.setBounds(185, 26, 317, 61);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("UserName");
-		lblNewLabel_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(78, 105, 108, 29);
+		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNewLabel_1.setBounds(78, 105, 108, 36);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Password");
-		lblNewLabel_1_1.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(78, 156, 108, 38);
+		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 18));
+		lblNewLabel_1_1.setBounds(78, 157, 108, 36);
 		contentPane.add(lblNewLabel_1_1);
 
 		txtUserName = new JTextField();
-		txtUserName.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		txtUserName.setBounds(212, 101, 353, 36);
+		txtUserName.setFont(new Font("Arial", Font.PLAIN, 18));
+		txtUserName.setBounds(212, 105, 353, 36);
 		contentPane.add(txtUserName);
 		txtUserName.setColumns(10);
 
 		JCheckBox checkbox = new JCheckBox("Remember Me");
-		checkbox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		checkbox.setBounds(212, 218, 108, 23);
+		checkbox.setFont(new Font("Arial", Font.PLAIN, 14));
+		checkbox.setBounds(212, 199, 133, 23);
 		contentPane.add(checkbox);
 
 		JButton btnSignIn = new JButton("Sign in");
@@ -128,8 +129,8 @@ public class LoginForm extends JFrame {
 
 			}
 		});
-		btnSignIn.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnSignIn.setBounds(163, 283, 157, 38);
+		btnSignIn.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnSignIn.setBounds(162, 260, 157, 38);
 		contentPane.add(btnSignIn);
 
 		JButton btnReset = new JButton("Reset");
@@ -138,18 +139,18 @@ public class LoginForm extends JFrame {
 				resetField();
 			}
 		});
-		btnReset.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		btnReset.setBounds(350, 283, 157, 38);
+		btnReset.setFont(new Font("Arial", Font.PLAIN, 20));
+		btnReset.setBounds(349, 260, 157, 38);
 		contentPane.add(btnReset);
 
 		txtPassword = new JPasswordField();
-		txtPassword.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		txtPassword.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtPassword.setBounds(212, 157, 353, 36);
 		contentPane.add(txtPassword);
 		
 		JLabel lblNewLabel_2 = new JLabel("You don't have an account?");
-		lblNewLabel_2.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblNewLabel_2.setBounds(212, 258, 157, 14);
+		lblNewLabel_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		lblNewLabel_2.setBounds(212, 228, 186, 22);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel signUp = new JLabel("Sign Up Now !");
@@ -169,8 +170,8 @@ public class LoginForm extends JFrame {
 			}
 		});
 		signUp.setForeground(new Color(0, 0, 255));
-		signUp.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		signUp.setBounds(378, 258, 157, 14);
+		signUp.setFont(new Font("Arial", Font.PLAIN, 14));
+		signUp.setBounds(408, 229, 157, 21);
 		contentPane.add(signUp);
 	}
 

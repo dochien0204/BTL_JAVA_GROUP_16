@@ -175,7 +175,7 @@ public class InteriorPanel extends JPanel {
 		add(separator_1);
 		
 		separator_2 = new JSeparator();
-		separator_2.setBounds(598, 190, 349, 2);
+		separator_2.setBounds(598, 184, 349, 2);
 		add(separator_2);
 		
 		separator = new JSeparator();

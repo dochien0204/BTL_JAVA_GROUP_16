@@ -314,15 +314,21 @@ public class ComputerPanel extends JPanel {
 		btnSearch.setFont(new Font("Arial", Font.BOLD, 16));
 		btnSearch.setBounds(677, 149, 109, 30);
 		add(btnSearch);
-
+		
+		JLabel lblSortBy = new JLabel("Sort");
+		lblSortBy.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblSortBy.setFont(new Font("Arial", Font.BOLD, 16));
+		lblSortBy.setBounds(588, 207, 75, 30);
+		add(lblSortBy);
+		
 		cbSort = new JComboBox();
 		cbSort.setMaximumRowCount(9);
-		cbSort.addItem(new ComboItem("Sắp xếp theo giá >= 10 triệu", "price_10"));
-		cbSort.addItem(new ComboItem("Sắp xếp theo giá >= 20 triệu", "price_20"));
-		cbSort.addItem(new ComboItem("Sắp xếp theo giá >= 30 triệu", "price_30"));
-		cbSort.addItem(new ComboItem("Sắp xếp theo tên", "name"));
-		cbSort.addItem(new ComboItem("Sắp xếp theo số lượng", "total"));
-		cbSort.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		cbSort.addItem(new ComboItem("Sort By Price >= 10 Million", "price_10"));
+		cbSort.addItem(new ComboItem("Sort By Price >= 20 Million", "price_20"));
+		cbSort.addItem(new ComboItem("Sort By Price >= 30 Million", "price_30"));
+		cbSort.addItem(new ComboItem("Sort By Name", "name"));
+		cbSort.addItem(new ComboItem("Sort By Total", "total"));
+		cbSort.setFont(new Font("Arial", Font.PLAIN, 14));
 		cbSort.setBounds(669, 207, 236, 31);
 		add(cbSort);
 
@@ -334,7 +340,7 @@ public class ComputerPanel extends JPanel {
 			}
 		});
 		btnSort.setFont(new Font("Arial", Font.BOLD, 16));
-		btnSort.setBounds(677, 309, 109, 30);
+		btnSort.setBounds(677, 248, 109, 30);
 		add(btnSort);
 
 		JLabel osLable = new JLabel("OS");
