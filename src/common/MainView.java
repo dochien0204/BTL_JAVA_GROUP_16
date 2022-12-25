@@ -98,6 +98,19 @@ public class MainView extends JFrame {
 		btnExit.setFont(new Font("Arial", Font.BOLD, 16));
 		btnExit.setBounds(938, 695, 109, 45);
 		getContentPane().add(btnExit);
+		
+		JButton btnLogOut = new JButton("Log Out");
+		btnLogOut.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginForm.frame.setVisible(true);
+			}
+		});
+		btnLogOut.setForeground(Color.WHITE);
+		btnLogOut.setFont(new Font("Arial", Font.BOLD, 16));
+		btnLogOut.setBackground(new Color(62, 158, 255));
+		btnLogOut.setBounds(808, 695, 109, 45);
+		contentPane.add(btnLogOut);
 
 	}
 }
