@@ -44,10 +44,23 @@ public class FileUtil {
 				out.writeObject(accounts.get(i));
 			}
 		} else if (fileName.compareTo("report.bin") == 0) {
-			out.writeInt(housings.size());
-			for(int i = 0; i < housings.size(); i++) {
-				out.writeObject(housings.get(i));
+			if(housings != null) {
+				out.writeInt(housings.size());
+				for(int i = 0; i < housings.size(); i++) {
+					out.writeObject(housings.get(i));
+				}
+			} else if(computers != null) {
+				out.writeInt(computers.size());
+				for(int i = 0; i < computers.size(); i++) {
+					out.writeObject(computers.get(i));
+				}
+			} else if(interiors != null) {
+				out.writeInt(interiors.size());
+				for(int i = 0; i < interiors.size(); i++) {
+					out.writeObject(interiors.get(i));
+				}
 			}
+			
 		}
 
 		out.close(); // Đóng đối tượng thực thi

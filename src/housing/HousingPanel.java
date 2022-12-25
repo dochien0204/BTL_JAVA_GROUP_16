@@ -27,7 +27,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.RowSorter;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -506,7 +505,7 @@ public class HousingPanel extends JPanel {
 		separator_2.setBounds(598, 190, 349, 2);
 		add(separator_2);
 		
-		JButton btnThongKe = new JButton("Thống kê top 3 Diện tích BDS cao nhất");
+		JButton btnThongKe = new JButton("Thống kê");
 		btnThongKe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<Housing> topThree = new ArrayList<>();
@@ -528,7 +527,7 @@ public class HousingPanel extends JPanel {
 			}
 		});
 		btnThongKe.setFont(new Font("Arial", Font.PLAIN, 14));
-		btnThongKe.setBounds(665, 25, 286, 30);
+		btnThongKe.setBounds(834, 25, 120, 30);
 		add(btnThongKe);
 	}
 

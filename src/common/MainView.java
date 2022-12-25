@@ -1,8 +1,6 @@
 package common;
-import java.awt.Component;
 import java.awt.EventQueue;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;

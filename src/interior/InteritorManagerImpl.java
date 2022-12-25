@@ -3,7 +3,6 @@ package interior;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -134,57 +133,6 @@ public class InteritorManagerImpl implements InteriorManager {
 		} else {
 			Collections.sort(interiorsSortedByPrice, new sortByPrice().reversed());
 		}
-//
-//		// Xác định đối tượng tệp tin để xuất dữ liệu
-//		FileInputStream inFile = new FileInputStream("interior.bin");
-//		// Khai báo đối tượng thực hiện xuất
-//		ObjectInputStream in = new ObjectInputStream(inFile);
-//
-//		Scanner sc = new Scanner(System.in);
-//		List<Interior> interiorsSortedByPrice = new ArrayList<>();
-//		Interior interior = new Interior();
-//		
-//		System.out.println("1. Price min to sort.");
-//		System.out.println("2. Price max to sort.");
-//		System.out.print("Your choose: ");
-//		int choose = Integer.parseInt(sc.nextLine());
-//
-//		if (choose == 1) {
-//			for (int i = 0; i < MainView.interiors.size(); i++) {
-//				interior = (Interior) in.readObject();
-//				if (interior.getProduct_price() >= price) {
-//					interiorsSortedByPrice.add(interior);
-//				}
-//			}
-//		} else if (choose == 2) {
-//			for (int i = 0; i < MainView.interiors.size(); i++) {
-//				interior = (Interior) in.readObject();
-//				if (interior.getProduct_price() >= price) {
-//					interiorsSortedByPrice.add(interior);
-//				}
-//			}
-//		} else {
-//			throw new IllegalArgumentException("Unexpected value: " + choose);
-//		}
-//		in.close();
-//
-//		// Xác định đối tượng tệp tin để cập nhật dữ liệu ngẫu nhiên
-//		RandomAccessFile raf = new RandomAccessFile("interior.bin", "rw");
-//
-//		// Di chuyển xuống cuối file để thêm
-//		raf.seek(raf.length());
-//		raf.writeChars("Sort By Price");
-//
-//		interiorsSortedByPrice.forEach(item -> {
-//			try {
-//				raf.writeUTF(item.toString());
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		});
-//
-//		raf.close(); // Đóng đối tượng thực thi
 		return interiorsSortedByPrice;
 	}
 

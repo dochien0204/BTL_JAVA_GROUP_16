@@ -9,11 +9,11 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -67,13 +67,14 @@ public class ComputerPanel extends JPanel {
 	private JButton btnSort;
 	private JTextField osInput;
 
+	public static TopThreeComputer frameTop = new TopThreeComputer();
+	
 	public ComputerPanel() {
 		try {
 			FileUtil.countObject("computer.bin");
 		} catch (Exception e) {
 		}
 		initTable();
-//		list = FileUtil.binaryInputFileComputer("computer.bin", FileUtil.countObject("computer.bin"));
 		try {
 			showTable(MainView.computers);
 		} catch (ClassNotFoundException | IOException e2) {
@@ -203,7 +204,7 @@ public class ComputerPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				int row = table.getSelectedRow();
 				if (row == -1) {
-					JOptionPane.showMessageDialog(contentPane, "You have not selected housing to delete", "Error",
+					JOptionPane.showMessageDialog(contentPane, "You have not selected computer to delete", "Error",
 							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
@@ -354,11 +355,35 @@ public class ComputerPanel extends JPanel {
 		osInput.setColumns(10);
 		osInput.setBounds(149, 311, 290, 30);
 		add(osInput);
-
+		
+		JButton btnThongKe = new JButton("Thống kê");
+		btnThongKe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Computer> topThree = new ArrayList<>();
+				try {
+					List<Computer> c = FileUtil.binaryInputFileComputer("computer.bin", FileUtil.countObject("computer.bin"));
+					Collections.sort(c, new sortByPrice().reversed());
+					for(int i = 0; i < 3; i++){
+						topThree.add(c.get(i));
+					}
+					
+					FileUtil.binaryOutputFile("report.bin", null, topThree, null, null);
+					List<Computer> test = FileUtil.binaryInputFileComputer("report.bin", FileUtil.countObject("report.bin"));
+					frameTop.fillTable(topThree);
+					frameTop.setVisible(true);
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnThongKe.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnThongKe.setBounds(834, 25, 120, 30);
+		add(btnThongKe);
 	}
 
 	private void initTable() {
-		String[] columnNames = { "Id", "Name", "Price", "Total", "CPU", "Ram", "Hard Drive", "OS" };
+		String[] columnNames = { "ID", "Name", "Price", "Total", "CPU", "Ram", "Hard Drive", "OS" };
 		tableModel.setColumnIdentifiers(columnNames);
 		table.setModel(tableModel);
 	}
@@ -565,7 +590,7 @@ public class ComputerPanel extends JPanel {
 			if (c.getProduct_id().equals((String) table.getValueAt(row, 0))) {
 				if (computerManagerImpl.delComputer(c)) {
 					MainView.computers.remove(c);
-					JOptionPane.showMessageDialog(contentPane, "DELETE housing successful", "Successful",
+					JOptionPane.showMessageDialog(contentPane, "DELETE computer successful", "Successful",
 							JOptionPane.PLAIN_MESSAGE);
 					break;
 				}

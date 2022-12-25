@@ -14,6 +14,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -49,12 +50,13 @@ public class InteriorPanel extends JPanel {
 	private JSeparator separator;
 	private JSeparator separator_1;
 	private JSeparator separator_2;
+	public static TopThreeInterior frameTop = new TopThreeInterior();
 
 	private JFrame frame = new JFrame();
 	private JTable tb;
 
 	static DefaultTableModel dtm = new DefaultTableModel();
-	final static Object[] Title = { "Id", "Name", "Price", "Total", "Color", "Size", "Material" };
+	final static Object[] Title = { "ID", "Name", "Price", "Total", "Color", "Size", "Material" };
 	private JTextField txtSearch;
 	private JTextField txtSortByPrice;
 	
@@ -537,8 +539,7 @@ public class InteriorPanel extends JPanel {
 		tb.getColumnModel().getColumn(4).setPreferredWidth(170);
 		tb.getColumnModel().getColumn(5).setPreferredWidth(170);
 		tb.getColumnModel().getColumn(6).setPreferredWidth(150);
-		
-
+	
 
 		// Can giua cac cot trong table
 		DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
@@ -569,6 +570,33 @@ public class InteriorPanel extends JPanel {
 		lblSortType.setFont(new Font("Arial", Font.BOLD, 16));
 		lblSortType.setBounds(577, 231, 90, 30);
 		add(lblSortType);
+		
+
+		JButton btnThongKe = new JButton("Thống kê");
+		btnThongKe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				List<Interior> topThree = new ArrayList<>();
+				try {
+					List<Interior> interiors = FileUtil.binaryInputFileInterior("interior.bin", FileUtil.countObject("interior.bin"));
+					Collections.sort(interiors, new sortByPrice().reversed());
+					for(int i = 0; i < 3; i++){
+						topThree.add(interiors.get(i));
+					}
+					
+					FileUtil.binaryOutputFile("report.bin", null, null, topThree, null);
+					List<Interior> test = FileUtil.binaryInputFileInterior("report.bin", FileUtil.countObject("report.bin"));
+					frameTop.fillTable(topThree);
+					frameTop.setVisible(true);
+					
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnThongKe.setFont(new Font("Arial", Font.PLAIN, 14));
+		btnThongKe.setBounds(834, 25, 120, 30);
+		add(btnThongKe);
+		
 	}
 	public static List<Interior> generateInterior(int n) {
 		List<Interior> list = new ArrayList<>();
