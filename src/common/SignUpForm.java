@@ -83,15 +83,18 @@ public class SignUpForm extends JFrame {
 		contentPane.add(lblNewLabel_1_2);
 
 		txtUserName = new JTextField();
+		txtUserName.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtUserName.setBounds(228, 87, 340, 37);
 		contentPane.add(txtUserName);
 		txtUserName.setColumns(10);
 
 		txtPassword = new JPasswordField();
+		txtPassword.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtPassword.setBounds(228, 148, 340, 37);
 		contentPane.add(txtPassword);
 
 		txtConfirm = new JPasswordField();
+		txtConfirm.setFont(new Font("Arial", Font.PLAIN, 18));
 		txtConfirm.setBounds(228, 212, 340, 37);
 		contentPane.add(txtConfirm);
 
