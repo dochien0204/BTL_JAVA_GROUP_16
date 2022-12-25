@@ -219,12 +219,12 @@ public class ComputerPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				int row = table.getSelectedRow();
 				nameInput.setText((String) table.getValueAt(row, 1));
-				totalInput.setText((String) table.getValueAt(row, 2));
-				cpuInput.setText((String) table.getValueAt(row, 3));
-				ramInput.setText((String) table.getValueAt(row, 4));
-				hardDriveInput.setText((String) table.getValueAt(row, 5));
-				osInput.setText((String) table.getValueAt(row, 6));
-				priceInput.setText(formatString((String) table.getValueAt(row, 7)));
+				priceInput.setText((String) table.getValueAt(row, 2));
+				totalInput.setText((String) table.getValueAt(row, 3));
+				ramInput.setText((String) table.getValueAt(row, 5));
+				cpuInput.setText((String) table.getValueAt(row, 4));
+				hardDriveInput.setText((String) table.getValueAt(row, 6));
+				osInput.setText(formatString((String) table.getValueAt(row, 7)));
 				idChoose = (String) table.getValueAt(row, 0);
 			}
 		});
